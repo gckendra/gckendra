@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gayatri Chetana Kendra</title>
+    <link rel="icon" href="asserts\gcklogo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+ 
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-size: 13px; /* Adjust as needed */
+      }
+      #image-gallery img {
+    width: 233px;
+    height: 205px;
+    padding: 4px;
+    border-radius: 16px;
+    padding-left: 5px;
+}
+      header {
+        background-color: #150555;
+        color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em;
+      }
+      #image-gallery h2 {
+        color: #150555;
+        border-bottom: 2px solid #150555;
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+ 
+      header img {
+        max-height: 50px;
+        max-width: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-bottom: 0.5em;
+      }
+ 
+      header div {
+        display: flex;
+        align-items: center;
+      }
+ 
+      header h1 {
+        margin: 0;
+        margin-left: 0.5em;
+        font-size: 1.5em;
+        color: #fff;
+        cursor: pointer;
+      }
+ 
+      nav {
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+      }
+ 
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: bold;
+        transition: color 0.3s;
+        margin-bottom: 0.5em;
+      }
+ 
+      nav a i {
+        margin-right: 5px;
+      }
+ 
+      nav a:hover {
+        color: #ffd700;
+      }
+ 
+      nav a.selected {
+        background-color: #fff;
+        color: #150555;
+        border-radius: 5px;
+        padding: 0.5em;
+      }
+ 
+      section {
+        max-width: 100%;
+        margin: 2em auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        animation: fadeIn 0.5s ease-in-out;
+        display: none;
+        padding: 1em;
+      }
+ 
+      section h2 {
+        text-align: left;
+        color: #150555;
+      }
+ 
+      section p {
+        text-align: justify;
+        line-height: 1.6;
+      }
+ 
+      .contact-info,
+      .contact-extra {
+        transition: transform 0.3s ease-in-out;
+      }
+ 
+      .contact-info:hover,
+      .contact-extra:hover {
+        transform: scale(1.05);
+      }
+ 
+      .contact-info,
+      .contact-extra {
+        background-color: #f9f9f9;
+        padding: 1em;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 1em;
+        text-align: center;
+        max-width: 100%;
+      }
+ 
+      .contact-info p,
+      .contact-extra p {
+        margin: 0.7em 0;
+        color: #333;
+        word-wrap: break-word; /* Ensure long words are broken and do not overflow */
+      }
+ 
+      .contact-extra a {
+        color: #150555;
+        text-decoration: underline;
+        word-wrap: break-word; /* Ensure long words are broken and do not overflow */
+      }
+ 
+      .contact-info p:first-child {
+        font-weight: bold;
+      }
+ 
+      .contact-extra p {
+        font-style: italic;
+      }
+ 
+      .contact-extra a {
+        color: #150555;
+        text-decoration: underline;
+      }
+ 
+      .contact-extra a:hover {
+        color: #ffd700;
+      }
+ 
+      .social-icons a {
+        color: #150555;
+        margin-right: 1em;
+        font-size: 1.2em;
+        text-decoration: none;
+      }
+ 
+      .social-icons a:hover {
+        color: #ffd700;
+      }
+ 
+      .social-icons a i {
+        color: #150555;
+        margin-right: 5px;
+      }
+ 
+      .social-icons a:hover i {
+        color: #ffd700;
+      }
+ 
+      .contact-extra .social-icons a {
+        color: #1877f2; /* Facebook color */
+        margin-right: 1em;
+        font-size: 1.2em;
+        text-decoration: none;
+      }
+ 
+      .contact-extra .social-icons a:hover {
+        color: #3b5998; /* Facebook color on hover */
+      }
+ 
+      .contact-extra .social-icons a i {
+        color: #1877f2; /* Facebook icon color */
+        margin-right: 5px;
+      }
+ 
+      .contact-extra .social-icons a:hover i {
+        color: #3b5998; /* Facebook icon color on hover */
+      }
+ 
+      .contact-extra a[href*="instagram"] i {
+        color: #e1306c; /* Instagram icon color */
+      }
+ 
+      .contact-extra a[href*="instagram"]:hover i {
+        color: #bc2a8d; /* Instagram icon color on hover */
+      }
+ 
+      .contact-extra a[href*="whatsapp"] i {
+        color: #25d366; /* WhatsApp icon color */
+      }
+ 
+      .contact-extra a[href*="whatsapp"]:hover i {
+        color: #128c7e; /* WhatsApp icon color on hover */
+      }
+ 
+      /* Add this style for the YouTube icon */
+      .social-icons a[href*="youtube"] i {
+        color: #ff0000; /* YouTube icon color */
+      }
+ 
+      .social-icons a[href*="youtube"]:hover i {
+        color: #ff6666; /* YouTube icon color on hover */
+      }
+ 
+      footer {
+        background-color: #150555;
+        color: #fff;
+        text-align: center;
+        padding: 0.5em; /* Change from -0.5em to 0.5em */
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 0.8em;
+      }
+ 
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 0.5em;
+        transition: color 0.3s;
+      }
+ 
+      footer a:hover {
+        color: #ffd700;
+      }
+ 
+      footer a i {
+        color: #1877f2;
+      }
+ 
+      footer a:hover i {
+        color: #3b5998;
+      }
+ 
+      footer a i.fa-instagram {
+        color: #e1306c;
+      }
+ 
+      footer a:hover i.fa-instagram {
+        color: #bc2a8d;
+      }
+ 
+      .fa-phone-alt {
+        margin-right: 5px;
+      }
+ 
+      .card {
+        width: 90%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 13px;
+        margin: 2em auto;
+        background-color: #f9f9f9;
+        text-align: justify;
+      }
+ 
+      .card h2 {
+        color: #150555;
+      }
+      #contact h2 {
+        color: #150555;
+        border-bottom: 2px solid #150555;
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+      #about h2 {
+        color: #150555;
+        border-bottom: 2px solid #150555;
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+      #gallery h2 {
+        color: #150555;
+        border-bottom: 2px solid #150555;
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+ 
+      .card p {
+        text-align: justify;
+        line-height: 1.6;
+      }
+ 
+      .card .video-container button.arrow-btn {
+        font-size: 1.5em;
+        background-color: #150555;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5em;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+ 
+      .card .video-container {
+        position: relative;
+        margin-bottom: 1em; /* Add some bottom margin to create space between player and buttons */
+      }
+ 
+      .card .video-container button.arrow-btn:first-child {
+        left: 5%;
+      }
+ 
+      .card .video-container button.arrow-btn:last-child {
+        right: 2%;
+      }
+      .card .video-container button.arrow-btn:hover {
+        color: #ffd700;
+      }
+ 
+      .card .video-container #player {
+        width: calc(84% - 4em);
+        margin: 2px 1em;
+        margin-left: 122px;
+      }
+      #support {
+        max-width: 100%;
+        margin: 2em auto;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+ 
+      #support:hover {
+        transform: scale(1.02);
+      }
+ 
+      #support h2 {
+        color: #150555;
+        border-bottom: 2px solid #150555;
+        padding-bottom: 0.5em;
+        margin-bottom: 1em;
+      }
+ 
+      #support p {
+        margin-bottom: 1em;
+        line-height: 1.6;
+      }
+ 
+      .payment-options {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+ 
+      .upi-scanner {
+        flex: 1;
+        margin: 1em; /* Adjust margin for responsiveness */
+        overflow: hidden;
+        border-radius: 10px;
+      }
+ 
+      .bank-details {
+        flex: 2;
+        margin: 1em; /* Adjust margin for responsiveness */
+      }
+ 
+      .upi-scanner img {
+        max-width: 60%; /* Set a maximum width for the image */
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 8px; /* Add padding for better visual appearance */
+      }
+ 
+      @media only screen and (max-width: 600px) {
+        .card {
+          width: 90%;
+        }
+ 
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+ 
+        header img {
+          margin-bottom: 0.5em;
+        }
+ 
+        nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+ 
+        nav a {
+          margin-right: 1em;
+        }
+ 
+        section {
+          padding: 1em;
+        }
+ 
+        .contact-details {
+          flex-direction: column;
+        }
+ 
+        .contact-info,
+        .social-icons,
+        .contact-extra {
+          width: 85%;
+          margin: 1em auto;
+          text-align: center;
+        }
+ 
+        .social-icons a {
+          margin: 0.5em;
+        }
+ 
+        .contact-extra a,
+        .contact-extra p {
+          margin: 0.5em 0;
+        }
+ 
+        .contact-extra .social-icons a {
+          margin: 0.5em;
+        }
+        .card .video-container {
+          margin-bottom: em; /* Increase bottom margin for space between player and buttons in mobile view */
+        }
+ 
+        .card .video-container button.arrow-btn {
+          position: static; /* Change position to static for mobile view */
+          margin-top: 2em; /* Add top margin for separation from the video */
+        }
+ 
+        .card .video-container #player {
+          width: 100%; /* Make the video container full width */
+          margin: 0; /* Remove margin for the video container */
+        }
+      }
+      .gallery-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .gallery-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 143px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 4px;
+        margin-top: 7px;
+      }
+ 
+      .gallery-dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+      }
+ 
+      .gallery-dropdown-content a:hover {
+        background-color: #f1f1f1;
+        border-radius: 4px;
+      }
+ 
+      .gallery-dropdown:hover .gallery-dropdown-content {
+        display: block;
+        border-radius: 4px;
+      }
+ 
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+ 
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </head>
+  <!-- The YouTube IFrame Player API script -->
+ 
+  <body>
+    <header>
+      <div>
+        <a onclick="showSection('home')">
+          <img src="asserts\gcklogo.png" alt="Gayatri Chetana Kendra Logo" />
+        </a>
+        <a onclick="showSection('home')">
+          <h1>Gayatri Chetana Kendra</h1>
+        </a>
+      </div>
+      <nav>
+        <a onclick="showSection('home')" class="selected" data-section="home">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <div class="gallery-dropdown">
+          <a> <i class="fas fa-images"></i> Gallery </a>
+          <div class="gallery-dropdown-content">
+            <a
+              onclick="showSection('image-gallery')"
+              data-section="image-gallery"
+              ><i class="fas fa-image"></i>Images</a
+            >
+            <a onclick="showSection('gallery')" data-section="gallery"
+              ><i class="fas fa-video"></i>Videos</a
+            >
+          </div>
+        </div>
+ 
+        <a onclick="showSection('about')" data-section="about">
+          <i class="fas fa-rocket"></i> Our Mission
+        </a>
+        <a onclick="showSection('support')" data-section="support">
+          <i class="fas fa-hands-helping"></i> Support Us
+        </a>
+        <a onclick="showSection('contact')" data-section="contact">
+          <i class="fas fa-envelope"></i> Contact Us
+        </a>
+      </nav>
+    </header>
+    <section id="home" class="card">
+      <h2>Welcome to Gayatri Chetana Kendra</h2>
+      <p>
+        Gayatri Chetana Kendra is a living model of a beautiful society, being
+        guided by principles of human unity and equality. It's a modern adoption
+        of the age-old wisdom of Vedic Rishis, who practiced and propagated the
+        philosophy of Vasudhaiva Kutumbakam. Founded by saint, reformer, writer,
+        philosopher, spiritual guide, and visionary Yug Rishi Pandit Shriram
+        Sharma Acharya, this mission has emerged as a mass movement for the
+        Transformation of Era.
+      </p>
+ 
+      <h3>Aims & Objectives:</h3>
+      <ul>
+        <li>Rise of divinity in human, descent of heaven on earth</li>
+        <li>
+          Individual Development, Family Development, and Social Upliftment
+        </li>
+        <li>Healthy body, pure mind, and civilized society</li>
+        <li>Atmavat sarvabhooteshu (all living beings are soulkins)</li>
+        <li>Vasudhaiv kutumbkam (Entire earth is our family)</li>
+        <li>
+          One Nation, One Language (love), One Religion (humanity), One
+          Government (Self Govern)
+        </li>
+        <li>
+          Everyone should get equal opportunity for self-growth irrespective of
+          caste, color, or creed.
+        </li>
+      </ul>
+    </section>
+    <section id="gallery" class="card">
+      <h2>Videos</h2>
+      <div class="video-container">
+        <!-- Placeholder for the player -->
+        <button onclick="playPrevious()" class="arrow-btn">&#9665;</button>
+        <div id="player"></div>
+        <button onclick="playNext()" class="arrow-btn">&#9655;</button>
+        <!-- Video heading -->
+        <h3 style="text-align: center" id="video-heading"></h3>
+        <!-- Left and Right arrows for video navigation -->
+      </div>
+    </section>
+    <section id="image-gallery" class="card">
+      <h2>Images</h2>
+    </section>
+    <section id="about" class="card">
+      <h2>Our Mission</h2>
+      <p>
+        The unique experiment of “Vichar Kranti” - gradual refinement of
+        thoughts, righteous transformation of attitude and sublime transmutation
+        of human psychology up to the divine realms of spirituality is the
+        foundation of this mission. The founder of the mission, Pt. Shriram
+        Sharma Acharya, wrote about 3000 enlightening books on wide-ranging
+        topics.
+      </p>
+      <h3>Thought Transformation Movement Includes :</h3>
+      <ul>
+        <li>Dissemination of Righteous Knowledge</li>
+        <li>Mass Awakening Campaign</li>
+        <li>Advent of New Era</li>
+      </ul>
+      <p>
+        Thoughts have got immense power. However, for most of us, thoughts are
+        only figments of one’s imagination. Generally, people consider thoughts
+        as spare time entertainment, but the only reason for this is that they
+        have never paid attention to the power of thoughts.
+      </p>
+    </section>
+    <section id="support" class="card">
+      <h2>Support Us</h2>
+      <p>
+        If you would like to make a donation to support Gayatri Chetana Kendra,
+        you can use the following options:
+      </p>
+ 
+      <div class="payment-options">
+        <div class="upi-scanner">
+          <img src="asserts\upi.jpg" alt="UPI Scanner Image" class="center" />
+        </div>
+ 
+        <div class="bank-details">
+          <h3>Bank Account Details:</h3>
+          <ul>
+            <li><strong>Account Name:</strong> Gayatri Chetana Kendra</li>
+            <li><strong>Account Number:</strong> 32613458888</li>
+            <li><strong>Bank Name:</strong> State bank of the India</li>
+            <li><strong>IFSC Code:</strong> SBIN0005159</li>
+            <!-- Add more bank details as needed -->
+          </ul>
+        </div>
+      </div>
+ 
+      <p>
+        Contact us for any assistance or if you have questions about supporting
+        our mission.
+      </p>
+    </section>
+ 
+    <section id="contact" class="card">
+      <h2>Contact Us</h2>
+      <div class="contact-details">
+        <div class="contact-info">
+          <h4 style="text-align: left">Address :</h4>
+          <p>
+            Gayatri Chetana Kendra Tagira, po : Ranital, Dist - Bhadrak, Near
+            Kenal road opposite Odisha pin : 756111.
+          </p>
+          <p><b>PAN No: AAETG4829P</b></p>
+          <p><b>Registration No: SB023202302942</b></p>
+        </div>
+        <div class="contact-extra">
+          <p>
+            <i class="fas fa-phone-alt"></i><b>Mobile:</b
+            ><a href="tel:+917077033108">+91 7077033108</a>
+          </p>
+ 
+          <p>
+            <i class="fas fa-envelope"></i><b> Email:</b
+            ><a href="mailto:gayatrichetanakendra2023@gmail.com"
+              >gayatrichetanakendra2023@gmail.com</a
+            >
+          </p>
+ 
+          <div class="social-icons">
+            <a
+              href="https://www.youtube.com/@Gayatrichetanakendra"
+              target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="https://www.instagram.com/gckendraorg/" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.facebook.com/gckendraorg/" target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a
+              href="https://api.whatsapp.com/send?phone=7077033108"
+              target="_blank"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2024 Gayatri Chetana Kendra. All rights reserved.</p>
+    </footer>
+    <!-- The YouTube IFrame Player API script -->
+    <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
+ 
+    <script>
+      $(document).ready(function () {
+        const apiKey = "AIzaSyBOUXhXsBwpMp32j2ht9TysLQRGUNMxoDw";
+        const folderId = "1XygM6NAygjk755LP-KEnygB1tya1d64A";
+        $.ajax({
+          url: `https://www.googleapis.com/drive/v3/files`,
+          type: "GET",
+          data: {
+            q: `'${folderId}' in parents and trashed = false`,
+            fields: "files(id, name, webContentLink, thumbnailLink)",
+            key: apiKey,
+          },
+          success: function (response) {
+            const galleryContainer = $("#image-gallery");
+ 
+            if (response.files && response.files.length > 0) {
+              response.files.forEach((file) => {
+                const imageElement = `<a data-fancybox="gallery" href="${file.thumbnailLink}"><img src="${file.thumbnailLink}" alt="${file.name}" class="gallery-thumbnail"></a>`;
+ 
+                galleryContainer.append(imageElement);
+              });
+              $('[data-fancybox="gallery"]').fancybox({
+                buttons: [
+                  "zoom",
+                  "slideShow",
+                  "fullScreen",
+                  "download",
+                  "thumbs",
+                  "close",
+                ],
+                zoom: {
+                  clickContent: true,
+                  clickSlide: true,
+                  clickOutside: true,
+                  dblclickContent: true,
+                  dblclickSlide: true,
+                  dblclickOutside: true,
+                },
+                afterLoad: function (instance, current) {
+                  console.log("Fancybox afterLoad:", instance, current);
+                  $(current.$content).find(".fancybox-image").css({
+                    border: "2px solid black",
+                    "border-radius": "10px",
+                    height: "400px",
+                    width: "480px",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                  });
+                },
+ 
+                onError: function (instance, current, error) {
+                  console.error("Fancybox error:", instance, current, error);
+                },
+                loop: true,
+              });
+            } else {
+              console.error(
+                "No files found in the specified Google Drive folder."
+              );
+            }
+          },
+          error: function (error) {
+            console.error("Error loading images from Google Drive:", error);
+          },
+        });
+      });
+ 
+      // Initialize the current section variable
+      let currentSection = "home";
+      let player; // Declare player variable
+ 
+      // Function to create the YouTube player
+      function onYouTubeIframeAPIReady() {
+        console.log("YouTube API is ready.");
+        initializePlayer();
+      }
+ 
+      function initializePlayer() {
+        var playlistId = "PLSFI6C3Qh6kbj052zxLmGHL6f9kdQOGKy";
+ 
+        player = new YT.Player("player", {
+          height: "360",
+          width: "640",
+          playerVars: {
+            listType: "playlist",
+            list: playlistId,
+            autoplay: 0, // Set autoplay to 0 (false)
+            loop: 0,
+            controls: 1,
+          },
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+          },
+        });
+      }
+ 
+      function onPlayerReady(event) {
+        // Set the initial video heading
+        updateVideoHeading();
+      }
+ 
+      function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.ENDED) {
+          // Video ended, do something if needed
+        } else if (event.data === YT.PlayerState.PLAYING) {
+          // Video started playing, update the video heading
+          updateVideoHeading();
+        }
+      }
+ 
+      // Function to play the next video in the playlist
+      function playNext() {
+        var index = player.getPlaylistIndex();
+        player.playVideoAt(index + 1);
+      }
+ 
+      // Function to play the previous video in the playlist
+      function playPrevious() {
+        var index = player.getPlaylistIndex();
+        player.playVideoAt(index - 1);
+      }
+ 
+      // Function to update the video heading
+      function updateVideoHeading() {
+        var index = player.getPlaylistIndex();
+        var videoData = player.getVideoData();
+        var videoTitle = videoData.title;
+        document.getElementById("video-heading").innerText = videoTitle;
+      }
+ 
+      // Show the "Home" section by default on page load
+      showSection(currentSection);
+ 
+      function showSection(sectionId) {
+        // Check if the clicked section is different from the current section
+        if (sectionId !== currentSection) {
+          // Stop the video if we are leaving the "gallery" section
+          if (currentSection === "gallery" && player) {
+            player.stopVideo();
+          }
+ 
+          // Hide the current section
+          document.getElementById(currentSection).style.display = "none";
+ 
+          // Remove the "selected" class from the current navigation link
+          document
+            .querySelector(`nav a[data-section="${currentSection}"]`)
+            .classList.remove("selected");
+        }
+ 
+        // Show the selected section
+        document.getElementById(sectionId).style.display = "block";
+ 
+        // Add the "selected" class to the clicked navigation link
+        document
+          .querySelector(`nav a[data-section="${sectionId}"]`)
+          .classList.add("selected");
+ 
+        // Update the current section variable
+        currentSection = sectionId;
+ 
+        // Smooth scroll to the selected section
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: "smooth",
+        });
+ 
+        // If the section is the "gallery," initialize the player if it hasn't been initialized
+        if (sectionId === "gallery" && !player) {
+          initializePlayer();
+        }
+      }
+    </script>
+  </body>
+</html>
